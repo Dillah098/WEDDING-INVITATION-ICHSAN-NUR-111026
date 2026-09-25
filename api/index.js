@@ -80,4 +80,26 @@ app.post('/api/rsvps', async (req, res) => {
   }
 });
 
+app.delete('/api/rsvps/:id', async (req, res) => {
+  if (!db) return res.status(500).json({ error: 'Database not configured' });
+  try {
+    const result = await db.execute('DELETE FROM rsvps WHERE id = ?', [req.params.id]);
+    res.json({ success: true, deleted: result.changes });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to delete RSVP' });
+  }
+});
+
+app.delete('/api/rsvps', async (req, res) => {
+  if (!db) return res.status(500).json({ error: 'Database not configured' });
+  try {
+    await db.execute('DELETE FROM rsvps');
+    res.json({ success: true, deleted: 'all' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to clear RSVPs' });
+  }
+});
+
 module.exports = app;

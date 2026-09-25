@@ -159,6 +159,9 @@
       origin: { y: 0.6 },
       colors: ['#C9A34E', '#E8D5A0']
     });
+
+    // Refresh daftar doa
+    loadDoaUcapan();
   });
 
   // Closing confetti
@@ -192,7 +195,7 @@
         card.innerHTML = `
           <div class="dc-name">${escapeHtml(w.name)}</div>
           <div class="dc-status"><i class="fa-solid fa-circle-check me-1"></i>${escapeHtml(w.status)}</div>
-          <div class="dc-msg">"${escapeHtml(w.message)}"</div>
+          <div class="dc-msg">"${escapeHtml(w.message || w.msg)}"</div>
           <div class="dc-time">${date}</div>
         `;
         container.appendChild(card);

@@ -32,6 +32,7 @@
     <h1>RSVP Ichsan & Nur</h1>
     <p style="color:#6b5a52; margin-top:0;">Panel admin — tanpa login</p>
     <button class="refresh" onclick="loadRsvps()">Refresh</button>
+    <button class="refresh" onclick="clearAllRsvps()" style="background:#5C1327; margin-left:.5rem;">Hapus Semua Data</button>
     <div class="stats" id="stats"></div>
     <div style="overflow-x: auto;">
       <table>
@@ -41,6 +42,7 @@
             <th>Status</th>
             <th>Ucapan</th>
             <th>Waktu</th>
+            <th>Aksi</th>
           </tr>
         </thead>
         <tbody id="rsvpTable"></tbody>
@@ -80,8 +82,21 @@
           <td><span class="badge ${cls}">${escapeHtml(r.status)}</span></td>
           <td>${escapeHtml(r.message)}</td>
           <td style="white-space:nowrap; color:#8a7a6d; font-size:0.85rem;">${time}</td>
+          <td><button class="refresh" onclick="deleteRsvp('${r.id}')" style="background:#5C1327; padding:.3rem .6rem; font-size:.7rem;">Hapus</button></td>
         </tr>`;
       }).join('');
+    }
+
+    async function deleteRsvp(id) {
+      if (!confirm('Hapus RSVP ini?')) return;
+      const res = await fetch(`/api/rsvps/${id}`, { method: 'DELETE' });
+      if (res.ok) loadRsvps();
+    }
+
+    async function clearAllRsvps() {
+      if (!confirm('Hapus SEMUA data RSVP? Tindakan ini tidak dapat dibatalkan.')) return;
+      const res = await fetch('/api/rsvps', { method: 'DELETE' });
+      if (res.ok) loadRsvps();
     }
 
     function escapeHtml(str) {

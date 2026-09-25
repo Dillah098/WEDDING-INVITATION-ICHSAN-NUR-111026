@@ -540,29 +540,28 @@ body.locked .bottom-nav{display:none;}
 /* Music Player */
 .music-player{
   position:fixed;
-  right:18px; bottom:18px;
+  top:16px; right:18px;
   z-index:500;
 }
 body.locked .music-player{display:none;}
 .music-btn{
-  width:52px; height:52px;
+  width:36px; height:36px;
   border-radius:50%;
-  background:var(--gold);
-  color:var(--maroon-deep);
-  border:none;
-  display:flex;
+  background:rgba(30,18,16,.85);
+  color:var(--cream);
+  border:1px solid rgba(201,163,78,.4);
+  display:inline-flex;
   align-items:center;
   justify-content:center;
-  font-size:1.4rem;
-  box-shadow:0 12px 30px rgba(201,163,78,.4);
+  font-size:1rem;
   cursor:pointer;
   transition:all .3s ease;
-  backdrop-filter:none;
+  backdrop-filter:blur(4px);
 }
 .music-btn:hover{
-  background:var(--gold-light);
-  transform:scale(1.1);
-  box-shadow:0 16px 34px rgba(201,163,78,.55);
+  background:var(--maroon);
+  color:var(--gold-light);
+  border-color:var(--gold);
 }
 .music-btn.playing{
   background:var(--maroon);
