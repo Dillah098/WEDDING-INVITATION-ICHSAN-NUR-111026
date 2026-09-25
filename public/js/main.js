@@ -166,6 +166,55 @@
     confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 }, colors: ['#C9A34E', '#E8D5A0', '#5C1327', '#0D3B2E'] });
   });
 
+  // Doa & Ucapan - fetch and render
+  async function loadDoaUcapan() {
+    const container = document.getElementById('doaScroll');
+    const hint = document.getElementById('doaHint');
+    if (!container) return;
+
+    try {
+      const res = await fetch('/api/rsvps');
+      if (!res.ok) throw new Error('Failed to fetch');
+      const wishes = await res.json();
+
+      container.innerHTML = '';
+      if (!wishes.length) {
+        container.innerHTML = '<div class="doa-card" style="width:100%; text-align:center;"><p style="color:#a8988a;">Belum ada doa dan ucapan. Jadilah yang pertama!</p></div>';
+        if (hint) hint.style.display = 'none';
+        return;
+      }
+
+      wishes.forEach(w => {
+        const card = document.createElement('div');
+        card.className = 'doa-card';
+        const ts = w.timestamp || w.created_at;
+        const date = ts ? new Date(ts).toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' }) : '';
+        card.innerHTML = `
+          <div class="dc-name">${escapeHtml(w.name)}</div>
+          <div class="dc-status"><i class="fa-solid fa-circle-check me-1"></i>${escapeHtml(w.status)}</div>
+          <div class="dc-msg">"${escapeHtml(w.msg)}"</div>
+          <div class="dc-time">${date}</div>
+        `;
+        container.appendChild(card);
+      });
+
+      if (hint) {
+        const showHint = container.scrollWidth > container.clientWidth;
+        hint.style.display = showHint ? 'block' : 'none';
+      }
+    } catch (err) {
+      container.innerHTML = '<div class="doa-card" style="width:100%; text-align:center;"><p style="color:#a8988a;">Gagal memuat doa dan ucapan.</p></div>';
+    }
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  loadDoaUcapan();
+
   // Music player
   const bgMusic = document.getElementById('bgMusic');
   const musicToggle = document.getElementById('musicToggle');

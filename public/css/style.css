@@ -443,6 +443,44 @@ a{text-decoration:none;}
 .copy-btn{cursor:pointer; font-size:.72rem; letter-spacing:1px; text-transform:uppercase; color:var(--gold-light); background:var(--maroon); border:none; padding:.4rem 1rem; border-radius:2px;}
 .copy-btn:hover{background:var(--maroon-soft);}
 
+/* DOA & UCAPAN */
+#doa-ucapan{background:var(--cream-dim); text-align:center;}
+.doa-scroll-wrapper{position:relative; max-width:100%; margin:0 auto;}
+.doa-scroll-container{
+  display:flex; gap:1rem; overflow-x:auto; overflow-y:hidden;
+  padding:1rem .5rem 1.5rem; scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch; scroll-behavior:smooth;
+  scrollbar-width:none;
+}
+.doa-scroll-container::-webkit-scrollbar{display:none;}
+.doa-card{
+  flex:0 0 auto; width:280px; scroll-snap-align:start;
+  background:#fff; border-radius:8px; padding:1.4rem 1.2rem;
+  box-shadow:0 10px 24px rgba(59,10,23,.08);
+  border:1px solid rgba(201,163,78,.25);
+  text-align:left;
+}
+.doa-card .dc-name{
+  font-family:var(--font-display); font-style:italic; font-size:1.1rem;
+  color:var(--maroon-deep); margin-bottom:.3rem;
+}
+.doa-card .dc-status{
+  font-size:.65rem; letter-spacing:1px; text-transform:uppercase;
+  color:var(--gold); font-weight:600; margin-bottom:.6rem;
+}
+.doa-card .dc-msg{font-size:.88rem; color:#5c4c44; line-height:1.6; font-style:italic; font-family:var(--font-display);}
+.doa-card .dc-time{font-size:.65rem; color:#a8988a; margin-top:.6rem; text-align:right;}
+.doa-scroll-hint{
+  text-align:center; font-size:.75rem; color:#8a7a6d;
+  margin-top:.5rem; letter-spacing:.5px;
+}
+.doa-scroll-hint i{margin:0 .3rem;}
+
+@media (min-width:768px){
+  .doa-scroll-container{flex-wrap:wrap; justify-content:center; overflow-x:visible; scroll-snap-type:none;}
+  .doa-card{flex:0 0 auto; width:300px;}
+}
+
 /* RSVP / WISHES */
 #rsvp{background:var(--maroon-deep); color:var(--cream);}
 #rsvp .form-control, #rsvp .form-select{
