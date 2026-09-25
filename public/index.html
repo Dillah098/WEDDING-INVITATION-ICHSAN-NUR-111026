@@ -8,7 +8,12 @@
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Jost:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap"></noscript>
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="https://maps.app.goo.gl">
+<link rel="dns-prefetch" href="https://www.google.com">
 
 <!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +47,7 @@
 
     <div class="cover-photo-frame">
       <div class="cover-photo-inner">
-        <img src="assets/images/p6.jpg" alt="Foto Ichsan &amp; Nur">
+        <img src="assets/images/p6.jpg" alt="Foto Ichsan &amp; Nur" fetchpriority="high">
       </div>
     </div>
 
@@ -111,7 +116,7 @@
       <div class="col-11 col-md-4" data-aos="fade-right">
         <div class="couple-card">
           <div class="photo-frame">
-            <img src="assets/images/pengantin cowo.png" alt="Foto Ichsan">
+            <img src="assets/images/pengantin cowo.png" alt="Foto Ichsan" loading="lazy">
           </div>
           <h3>Ichsan Ramadhan</h3>
           <p class="parents">Putra dari Bapak Abdul Bahid &amp; Ibu Marwiyah</p>
@@ -123,7 +128,7 @@
       <div class="col-11 col-md-4" data-aos="fade-left">
         <div class="couple-card">
           <div class="photo-frame">
-            <img src="assets/images/pengantin cewe.png" alt="Foto Nurhayati">
+            <img src="assets/images/pengantin cewe.png" alt="Foto Nurhayati" loading="lazy">
           </div>
           <h3>Nurhayati</h3>
           <p class="parents">Putri dari Bapak Sugiyo &amp; Ibu Mugiyati</p>
@@ -231,16 +236,16 @@
     <h2 class="mb-5 text-center" data-aos="fade-up" data-aos-delay="100" style="font-style:italic; font-size:2.2rem; color:var(--maroon-deep);">Momen Kami</h2>
     <div class="row g-3">
       <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="0">
-        <div class="gallery-item"><img src="assets/images/pengantin cowo.png" alt="Pengantin Cowo"></div>
+        <div class="gallery-item"><img src="assets/images/pengantin cowo.png" alt="Pengantin Cowo" loading="lazy"></div>
       </div>
       <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
-        <div class="gallery-item"><img src="assets/images/pengantin cewe.png" alt="Pengantin Cewe"></div>
+        <div class="gallery-item"><img src="assets/images/pengantin cewe.png" alt="Pengantin Cewe" loading="lazy"></div>
       </div>
       <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
-        <div class="gallery-item"><img src="assets/images/berdua.png" alt="Berdua"></div>
+        <div class="gallery-item"><img src="assets/images/berdua.png" alt="Berdua" loading="lazy"></div>
       </div>
       <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
-        <div class="gallery-item"><img src="assets/images/p6.jpg" alt="Moments"></div>
+        <div class="gallery-item"><img src="assets/images/p6.jpg" alt="Moments" loading="lazy"></div>
       </div>
     </div>
     <p class="text-center mt-3" style="font-size:.78rem; color:#8a7a6d;">Ichsan & Nur 111026.</p>
@@ -378,7 +383,7 @@
 
   <!-- Music Player -->
   <div class="music-player" id="musicPlayer">
-    <audio id="bgMusic" loop preload="auto">
+    <audio id="bgMusic" loop preload="none">
       <source src="assets/images/TIARA.mp3" type="audio/mpeg">
     </audio>
     <button class="music-btn" id="musicToggle" aria-label="Toggle Music">
