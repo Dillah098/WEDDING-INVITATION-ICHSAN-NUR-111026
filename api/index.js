@@ -1,11 +1,9 @@
 const { createClient } = require('@libsql/client');
 const express = require('express');
-const path = require('path');
 const crypto = require('crypto');
 
 const app = express();
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '..')));
 
 const TURSO_URL = process.env.TURSO_DATABASE_URL;
 const TURSO_TOKEN = process.env.TURSO_AUTH_TOKEN;
@@ -81,8 +79,5 @@ app.post('/api/rsvps', async (req, res) => {
     res.status(500).json({ error: 'Failed to save RSVP' });
   }
 });
-
-app.get('/admin', (req, res) => res.redirect('/admin/'));
-app.use('/admin', express.static(path.join(__dirname, '..', 'admin')));
 
 module.exports = app;

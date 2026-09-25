@@ -10,10 +10,13 @@
     {
       "src": "/api/(.*)",
       "dest": "/api/index.js"
-    },
+    }
+  ],
+  "redirects": [
     {
-      "src": "/(.*)",
-      "dest": "/api/index.js"
+      "source": "/admin",
+      "destination": "/admin/",
+      "permanent": true
     }
   ]
 }
