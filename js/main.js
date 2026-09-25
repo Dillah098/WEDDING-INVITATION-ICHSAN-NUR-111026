@@ -127,35 +127,8 @@
     });
   }
 
-  // Wishes (API backend + localStorage fallback)
+  // RSVP Form submit only - no public wish list
   const wishForm = document.getElementById('wishForm');
-  const wishList = document.getElementById('wishList');
-  const wishEmpty = document.getElementById('wishEmpty');
-  const STORAGE_KEY = 'undangan_ichsan_nur_wishes';
-
-  function loadWishes() {
-    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-    wishList.innerHTML = '';
-    if (data.length === 0) {
-      wishEmpty.style.display = 'block';
-    } else {
-      wishEmpty.style.display = 'none';
-      data.slice().reverse().forEach(w => {
-        const div = document.createElement('div');
-        div.className = 'wish-item';
-        div.innerHTML = `<div class="wname">${escapeHtml(w.name)} <span class="wstatus">— ${escapeHtml(w.status)}</span></div>
-                          <div class="wmsg">${escapeHtml(w.msg)}</div>`;
-        wishList.appendChild(div);
-      });
-    }
-  }
-
-  function escapeHtml(str) {
-    if (!str) return '';
-    const d = document.createElement('div');
-    d.textContent = str;
-    return d.innerHTML;
-  }
 
   wishForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -173,14 +146,12 @@
       if (!res.ok) throw new Error('Server error');
       await res.json();
     } catch (err) {
-      const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-      data.push({ name, status, msg });
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      alert('Gagal mengirim ucapan. Coba lagi.');
+      return;
     }
 
     wishForm.reset();
     attendButtons.forEach(b => b.classList.toggle('active', b.dataset.value === 'Hadir'));
-    loadWishes();
 
     confetti({
       particleCount: 60,
@@ -189,8 +160,6 @@
       colors: ['#C9A34E', '#E8D5A0']
     });
   });
-
-  loadWishes();
 
   // Closing confetti
   document.getElementById('confettiBtn').addEventListener('click', () => {

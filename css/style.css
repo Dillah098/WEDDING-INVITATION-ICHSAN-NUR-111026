@@ -547,3 +547,7 @@ footer .fa-heart{color:var(--gold);}
   .couple-amp{display:none;}
   .cd-box{width:70px;}
 }
+
+#rsvp .col-11.col-md-5[data-aos="fade-left"]{display:none;}
+#rsvp .row.justify-content-center.g-4{justify-content:center !important;}
+#rsvp .col-11.col-md-5[data-aos="fade-right"]{max-width:600px; flex:0 0 auto;}

@@ -5,9 +5,12 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start:turso": "node scripts/start-turso.js",
+    "dev:turso": "nodemon scripts/start-turso.js"
   },
   "dependencies": {
+    "@libsql/client": "^0.18.0",
     "express": "^4.21.2"
   },
   "devDependencies": {
